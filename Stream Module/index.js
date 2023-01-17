@@ -12,16 +12,20 @@ server.on("request", (req, res) => {
     //     res.end(data.toString());
     // });
 
-    // // lets use streaming approach
+    // // // lets use streaming approach
+    // const ReadableStream = fs.createReadStream("./input.txt");
+    // // when data is available for streaming
+    // ReadableStream.on("data", (chunkData) => {
+    //     res.write(chunkData.toString());
+    // });
+    // // when data ends
+    // ReadableStream.on("end", () => res.end());
+    // // if error while reading data
+    // ReadableStream.on("error", (err) => console.log(err));
+
+    //3rd and the most easiest way to stream data i.e the pipe method
     const ReadableStream = fs.createReadStream("./input.txt");
-    // when data is available for streaming
-    ReadableStream.on("data", (chunkData) => {
-        res.write(chunkData.toString());
-    });
-    // when data ends
-    ReadableStream.on("end", () => res.end());
-    // if error while reading data
-    ReadableStream.on("error", (err) => console.log(err));
+    ReadableStream.pipe(res);
 });
 
 server.listen(5000);
