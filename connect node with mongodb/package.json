@@ -1,5 +1,5 @@
 {
-  "name": "connect-mongo-with-node",
+  "name": "connect-node-with-mongodb",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
